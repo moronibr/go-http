@@ -37,6 +37,8 @@ func main() {
 
 	http.HandleFunc("/contas-handler", app.ContasHandler)
 
+	http.HandleFunc("/api/contas", app.ApiContasHandler(dbConn))
+
 	fmt.Println("Servidor rodando em http://localhost:8000")
 	http.ListenAndServe(":8000", nil)
 }

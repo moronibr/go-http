@@ -31,9 +31,6 @@ nav ul li a {
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #1abc9c;
-}
 
 /* Container principal */
 .container {
@@ -70,9 +67,7 @@ th, td {
     border-bottom: 1px solid #eee;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
