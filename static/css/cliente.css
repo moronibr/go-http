@@ -1,0 +1,90 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilização da navbar */
+nav {
+    background-color: #002b5c;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Container principal */
+.container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    box-shadow: #002b5c;
+}
+/* Título */
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Labels e inputs */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #002b5c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #20438d;
+}
+
+#msg {
+    color: green;
+    margin-top: 1rem;
+}
+
+#error-msg {
+    color: red;
+    margin-top: 1rem;
+}

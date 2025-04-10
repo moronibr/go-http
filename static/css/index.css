@@ -1,0 +1,83 @@
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* NAVBAR fixa no topo, encostada nas laterais */
+nav {
+    background-color: #002b5c;
+    padding: 15px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 40px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #004d99;
+    border-radius: 4px;
+}
+
+/* Espaço abaixo da navbar */
+body > h1, body > button, body > p {
+    margin-top: 100px;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Botão */
+#btn {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 12px 25px;
+    background-color: #004080;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btn:hover {
+    background-color: #003060;
+}
+
+/* Resultado */
+#result {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: green;
+}
