@@ -39,6 +39,14 @@ func main() {
 
 	http.HandleFunc("/api/contas", app.ApiContasHandler(dbConn))
 
+	http.HandleFunc("/contas/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPut {
+			app.EditAccountHandler(dbConn)(w, r)
+		} else if r.Method == http.MethodDelete {
+			app.DeleteAccountHandler(dbConn)(w, r)
+		}
+	})
+
 	fmt.Println("Servidor rodando em http://localhost:8000")
 	http.ListenAndServe(":8000", nil)
 }
