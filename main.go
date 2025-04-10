@@ -33,6 +33,10 @@ func main() {
 
 	http.HandleFunc("/add-cliente", app.AddClienteHandler(dbConn))
 
+	http.HandleFunc("/clientes-handler", app.ClientesHandler)
+
+	http.HandleFunc("/contas-handler", app.ContasHandler)
+
 	fmt.Println("Servidor rodando em http://localhost:8000")
 	http.ListenAndServe(":8000", nil)
 }

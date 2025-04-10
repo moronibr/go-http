@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="/static/css/contasHandler.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/conta">Adicionar Conta</a></li>
+            <li><a href="exibir-contas">Contas</a></li>
+            <li><a href="/cliente">Adicionar Cliente</a></li>
+            <li><a href="/exibir-clientes">Clientes</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Exibir Contas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>Número de Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conta in contas %}
+                <tr>
+                    <td>{{ users.name }}</td>
+                    <td>{{ users.email }}</td>
+                    <td>{{ users.registration_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/contasHandler.js"></script>
+</body>
+</html>
