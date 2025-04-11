@@ -23,6 +23,8 @@ func main() {
 
 	http.HandleFunc("/login", app.LoginHandler(dbConn))
 
+	http.HandleFunc("/logout", app.LogoutHandler)
+
 	http.HandleFunc("/index", app.IndexHandler)
 
 	http.HandleFunc("/conta", app.ContaHandler)

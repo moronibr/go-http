@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"text/template"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type LoginRequest struct {
@@ -31,27 +33,38 @@ func LoginHandler(db *sql.DB) http.HandlerFunc {
 		name := r.FormValue("name")
 		password := r.FormValue("password")
 
-		fmt.Println("Recebido no POST:")
-		fmt.Println("Usuário:", name)
-		fmt.Println("Senha:", password)
-
-		var storedPassword string
-		err := db.QueryRow("SELECT password FROM users WHERE name = ?", name).Scan(&storedPassword)
+		var storedHash string
+		err := db.QueryRow("SELECT password FROM users WHERE name = ?", name).Scan(&storedHash)
 		if err != nil {
 			fmt.Println("Erro ao buscar no banco:", err)
 			http.Error(w, "Dados Inválidos", http.StatusUnauthorized)
 			return
 		}
 
-		fmt.Println("Senha salva no banco:", storedPassword)
-
-		if password != storedPassword {
+		err = bcrypt.CompareHashAndPassword([]byte(storedHash), []byte(password))
+		if err != nil {
 			fmt.Println("Senha incorreta!")
 			http.Error(w, "Dados Inválidos", http.StatusUnauthorized)
 			return
 		}
 
+		// Criar cookie de sessão
+		cookie := &http.Cookie{
+			Name:  "session_user",
+			Value: name,
+			Path:  "/",
+			// Opcional: HttpOnly, Secure, SameSite
+		}
+		http.SetCookie(w, cookie)
+
 		fmt.Println("Login bem-sucedido! Redirecionando para /index")
 		http.Redirect(w, r, "/index", http.StatusSeeOther)
+	}
+}
+
+func LogoutHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		return
 	}
 }
