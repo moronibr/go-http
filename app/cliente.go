@@ -14,9 +14,10 @@ func ClientePageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Cliente struct {
+	ID             int    `json:"id"`
 	Nome           string `json:"nome"`
 	DataNascimento string `json:"data_nascimento"`
-	Idade          string `json:"idade"`
+	Idade          int    `json:"idade"`
 	Cidade         string `json:"cidade"`
 	Estado         string `json:"estado"`
 	Pais           string `json:"pais"`
