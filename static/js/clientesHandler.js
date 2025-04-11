@@ -16,10 +16,12 @@ $(document).ready(function () {
                         <td>${cliente.estado}</td>
                         <td>${cliente.pais}</td>
                         <td>${cliente.ocupacao}</td>
-                        <td>
-                            <button class="action-btn edit-btn" onclick="openModal('editar', ${cliente.id})">Editar</button>
-                            <button class="action-btn delete-btn" onclick="openModal('deletar', ${cliente.id})">Deletar</button>
-                        </td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn edit-btn" onclick="openModal('editar', '${cliente.nome}')">Editar</button>
+                                    <button class="action-btn delete-btn" onclick="openModal('deletar', '${cliente.nome}')">Deletar</button>
+                                </div>
+                            </td>
                     </tr>
                 `);
             });
@@ -45,8 +47,8 @@ $(document).ready(function () {
 });
 
 function openModal(action, nome) {
-    selectedClientId = nome;
+    selectedClientId = nome; // agora armazena o nome
     currentAction = action;
-    $('#modalText').text(`Tem certeza que deseja ${action} o cliente ID ${id}?`);
+    $('#modalText').text(`Tem certeza que deseja ${action} o cliente ${nome}?`);
     $('#actionModal').fadeIn();
 }
