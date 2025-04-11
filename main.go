@@ -49,6 +49,8 @@ func main() {
 
 	http.HandleFunc("/api/clientes", app.ApiClientesHandler(dbConn))
 
+	http.HandleFunc("/api/clientes/", app.GetClientByIDHandler(dbConn))
+
 	fmt.Println("Servidor rodando em http://localhost:8000")
 	http.ListenAndServe(":8000", nil)
 }

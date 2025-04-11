@@ -1,49 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
     <link rel="stylesheet" href="/static/css/clientesHandler.css">
-    <title>Exibir Clientes</title>
 </head>
+
 <body>
     <nav>
         <ul>
             <li><a href="/index">Home</a></li>
             <li><a href="/conta">Adicionar Conta</a></li>
-            <li><a href="contas-handler">Contas</a></li>
+            <li><a href="/contas-handler">Contas</a></li>
             <li><a href="/cliente">Adicionar Cliente</a></li>
             <li><a href="/clientes-handler">Clientes</a></li>
         </ul>
     </nav>
+
     <div class="container">
         <h1>Exibir Clientes</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Data de Nascimento</th>
-                    <th>Idade</th>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>Número de Registro</th>
                     <th>Cidade</th>
                     <th>Estado</th>
                     <th>País</th>
-                    <th>Ocupação</th>
+                    <th>Função</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="clientes">
-                <!-- Os dados dos clientes serão inseridos aqui pelo JavaScript -->
-                
+                <!-- Populado dinamicamente via JS -->
             </tbody>
         </table>
     </div>
 
-    <!-- Modal de Edição -->  <!-- Modal -->
-    <div id="actionModal" class="modal">
+    <!-- Modal de Edição -->
+    <!-- Modal de Edição -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>Editar Cliente</h2>
+        <input type="hidden" id="editId">
+
+        <label>Nome:</label>
+        <input type="text" id="editNome"><br>
+
+        <label>Data de Nascimento:</label>
+        <input type="date" id="editDataNascimento"><br>
+
+        <label>Cidade:</label>
+        <input type="text" id="editCidade"><br>
+
+        <label>Estado:</label>
+        <input type="text" id="editEstado"><br>
+
+        <label>País:</label>
+        <input type="text" id="editPais"><br>
+
+        <label>Ocupação:</label>
+        <input type="text" id="editOcupacao"><br>
+
+        <button id="saveChanges">Salvar Alterações</button>
+    </div>
+</div>
+
+
+    <!-- Modal de Confirmação para Deletar -->
+    <div id="deleteModal" class="modal">
         <div class="modal-content">
-            <p id="modalText">Tem certeza?</p>
+            <span id="closeDeleteModal" class="close">&times;</span>
+            <h2>Confirmar Exclusão</h2>
+            <p>Tem certeza que deseja excluir este cliente?</p>
+            <input type="hidden" id="deleteId">
             <div class="modal-buttons">
-                <button class="confirm" id="confirmBtn">Sim</button>
-                <button class="cancel" id="cancelBtn">Cancelar</button>
+                <button id="confirmDelete" class="btn-danger">Sim, excluir</button>
+                <button id="cancelDelete" class="btn-secondary">Cancelar</button>
             </div>
         </div>
     </div>
@@ -51,4 +87,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/js/clientesHandler.js"></script>
 </body>
+
 </html>

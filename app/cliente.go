@@ -6,6 +6,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func ClientePageHandler(w http.ResponseWriter, r *http.Request) {
@@ -54,5 +56,32 @@ func AddClienteHandler(db *sql.DB) http.HandlerFunc {
 
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Cliente adicionado com sucesso!"))
+	}
+}
+
+func GetClientByIDHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+			return
+		}
+
+		idStr := strings.TrimPrefix(r.URL.Path, "/api/clientes/")
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			http.Error(w, "ID inválido", http.StatusBadRequest)
+			return
+		}
+
+		var cliente Cliente
+		err = db.QueryRow("SELECT id, nome, data_nascimento, idade, cidade, estado, pais, ocupacao FROM clientes WHERE id = ?", id).
+			Scan(&cliente.ID, &cliente.Nome, &cliente.DataNascimento, &cliente.Idade, &cliente.Cidade, &cliente.Estado, &cliente.Pais, &cliente.Ocupacao)
+		if err != nil {
+			http.Error(w, "Cliente não encontrado", http.StatusNotFound)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(cliente)
 	}
 }
